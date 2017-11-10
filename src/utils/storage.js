@@ -34,4 +34,8 @@ export class CookieStorage {
 
     document.cookie = `${key}=${value}; path=${COOKIE_PATH}; expires=${date_expires}`;
   }
+
+  remove = (key) => {
+
+  }
 }
