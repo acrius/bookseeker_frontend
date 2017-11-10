@@ -24,5 +24,17 @@
   },
   "devDependencies": {
     "redux-logger": "^3.0.6"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acrius/bookseeker_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acrius/bookseeker_frontend/issues"
+  },
+  "homepage": "https://github.com/acrius/bookseeker_frontend#readme"
 }

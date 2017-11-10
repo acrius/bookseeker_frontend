@@ -3,12 +3,12 @@ const COOKIE_PATH = '/';
 
 export default class Storage {
   constructor() {
-    this.taget_storage = window.localStorage ? new LocalStorage() : new CookieStorage();
+    this.target_storage = window.localStorage ? new LocalStorage() : new CookieStorage();
   }
 
-  set = (key, value) => this.taget_storage.set(key, value);
+  set = (key, value) => this.target_storage.set(key, value);
 
-  get = (key) => this.taget_storage.get(key);
+  get = (key) => this.target_storage.get(key);
 
   remove = (key) => this.target_storage.remove(key);
 }
@@ -19,12 +19,13 @@ export class LocalStorage {
 
   set = (key, value) => window.localStorage.setItem(key, value);
 
-  remove = (key) => window.localStorage.removeItem(key);
+  remove = (key) => {window.localStorage.removeItem(key);};
 }
 
 export class CookieStorage {
   get = (key) => {
-    const matches = document.cookie.match(new RegExp("(?:^|; )" + key.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    const matches = document.cookie.match(new RegExp("(?:^|; )"
+      + key.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
 
