@@ -12,6 +12,7 @@ const initialState = {
     url: ''
   },
   tags : [],
+  url: '',
   publicationDate: null,
   fetching: false,
   error: null

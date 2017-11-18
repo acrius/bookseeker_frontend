@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/post';
 import PostView from '../components/PostView';
 
+
 class Post extends Component {
   componentDidMount() {
-    this.props.actions.getPost(this.props.match.params.id);
+    this.props.actions.getPost(this.props.postId);
   }
 
   render() {

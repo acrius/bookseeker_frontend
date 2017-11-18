@@ -40,9 +40,9 @@ class LoginForm extends Component {
             <input type="password" name="password" value={this.state.password} onChange={this.changePassword} />
           </div>
         </main>
-        <footer>
-          <input type="button" value="Зарегистрироваться" onClick={this.props.openRegisrationForm}/>
-          <input type="button" value="Войти" onClick={this.login} />
+        <footer className="auth_form__footer">
+          <input className="auth_form__footer__link_button" type="button" value="Зарегистрироваться" onClick={this.props.openRegisrationForm}/>
+          <input className="auth_form__footer__main_button" type="button" value="Войти" onClick={this.login} />
         </footer>
       </form>
     );
@@ -104,9 +104,9 @@ class RegistrationForm extends Component {
             <input type="email" name="email" value={this.state.email} onChange={this.changeEmail} />
           </div>
         </main>
-        <footer>
-          <input type="button" value="Войти" onClick={this.props.openLoginForm}/>
-          <input type="button" className="" value="Зарегистрироваться" onClick={this.registration} />
+        <footer className="auth_form__footer">
+          <input className="auth_form__footer__link_button" type="button" value="Войти" onClick={this.props.openLoginForm}/>
+          <input className="auth_form__footer__main_button" type="button" className="" value="Зарегистрироваться" onClick={this.registration} />
         </footer>
       </form>
     );

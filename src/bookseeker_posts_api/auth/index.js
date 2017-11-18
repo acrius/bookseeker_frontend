@@ -8,7 +8,7 @@ import {
 import { post_json, get_json } from '../../utils/request';
 import Storage from '../../utils/storage';
 
-export const registration = (...user) =>
+export const registration = (user) =>
   post_json(REGISTRATION_QUERY_PATH, user).then(
     data => {
     saveToken(data);

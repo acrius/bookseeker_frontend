@@ -162,19 +162,35 @@ body {
 .auth_form__footer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.auth_form__footer__link_button {
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: var(--header-color);
+}
+
+.auth_form__footer__main_button {
+  cursor: pointer;
 }
 
 .user_view {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  margin-right: 3rem;
 }
 
 .user_view:hover .user_view__menu_item {
   display: block;
+  cursor: pointer;
 }
 
 .user_view__username {
   color: var(--header-text-color);
+  cursor: pointer;
 }
 
 .user_view__menu_item {
@@ -185,6 +201,20 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
   z-index: 1;
+}
+
+.comments {
+  margin: 0.5rem;
+}
+
+.comments__comment {
+  background-color: var(--content-color);
+  padding: 1rem;
+}
+
+.commetns__comment__footer {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 480px) {
