@@ -8,6 +8,9 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_REQUEST_FAILED,
   LOGOUT_REQUEST_SUCCESS,
+  CONFIRM_REQUEST,
+  CONFIRM_REQUEST_FAILED,
+  CONFIRM_REQUEST_SUCCESS,
   REGISTRATION_QUERY_PATH,
   TOKEN_AUTH_PATH,
   REFRESH_TOKEN_AUTH_PATH,
@@ -18,7 +21,8 @@ import {
   login as apiLogin,
   getCurrentUser as apiGetCurrentUser,
   registration as apiRegistration,
-  hasToken, logout as apiLogout
+  hasToken, logout as apiLogout,
+  verifyEmail
  } from '../../../bookseeker_posts_api/auth';
 
 export function openAuthDialog() {
@@ -102,4 +106,25 @@ export function getCurrentUser() {
       )
     }
   };
+}
+
+export function confirmEmail(key) {
+  return (dispatch) => {
+    dispatch({
+      type: CONFIRM_REQUEST
+    });
+
+    try {
+      verifyEmail(key).then(
+        dispatch({
+          type: CONFIRM_REQUEST_SUCCESS
+        })
+      );
+    } catch (error) {
+      dispatch({
+        type: CONFIRM_REQUEST_FAILED,
+        payload: new Error(error)
+      })
+    }
+  }
 }

@@ -8,6 +8,9 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_REQUEST_FAILED,
   LOGOUT_REQUEST_SUCCESS,
+  CONFIRM_REQUEST,
+  CONFIRM_REQUEST_FAILED,
+  CONFIRM_REQUEST_SUCCESS,
   OPEN_LOGIN_DIALOG,
   CLOSE_LOGIN_DIALOG,
   AUTHORIZED,
@@ -35,10 +38,17 @@ const authDialogInitialState = {
   isOpenAuthDialog: false
 };
 
+const confirmEmailInitialState = {
+  confirmFetching: false,
+  confirmError: null,
+  confirmMessage: ''
+};
+
 export const initialState = {
   ...userDataInitialState,
   ...requestInitialState,
-  ...authDialogInitialState
+  ...authDialogInitialState,
+  ...confirmEmailInitialState
 };
 
 export const auth = (state = initialState, action) => {
@@ -47,7 +57,8 @@ export const auth = (state = initialState, action) => {
     ...registration(action),
     ...login(action),
     ...logout(action),
-    ...authDialog(action)
+    ...authDialog(action),
+    ...confirm(action)
   };
 };
 
@@ -149,3 +160,32 @@ const logout = (action) => {
 
   return newState;
 };
+
+const confirm = (action) => {
+  let newState = {};
+
+  switch (action.type) {
+    case CONFIRM_REQUEST:
+      newState = {
+        confirmFetching: true,
+        confirmError: null
+      };
+      break;
+    case CONFIRM_REQUEST_FAILED:
+      newState = {
+        confirmFetching: false,
+        confirmError: action.payload,
+        confirmMessage: 'Произошла ошибка при подтверждении почтового ящика...'
+      };
+      break;
+    case CONFIRM_REQUEST_SUCCESS:
+      newState = {
+        confirmFetching: false,
+        confirmError: null,
+        confirmMessage: 'Благодорим за регистрацию!!!'
+      };
+      break;
+  }
+
+  return newState;
+}

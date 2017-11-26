@@ -3,6 +3,8 @@ import {
   LOGIN_QUERY_PATH,
   LOGOUT_QUERY_PATH,
   GET_CURRENT_USER_QUERY_PATH,
+  VERIFY_EMAIL_QUERY_PATH,
+  REFRESH_TOKEN_QUERY_PATH,
   JWT_KEY
 } from '../settings';
 import { post_json, get_json } from '../../utils/request';
@@ -41,13 +43,54 @@ export const logout = () =>
   });
 
 
-export const auth_get_json = (path) =>
-  get_json(path, getAuthorizationHeaders());
+export const auth_get_json = (path) => {
+  try {
+    return get_json(path, getAuthorizationHeaders()).then(
+      response_data => {
+        if (response_data != null) {
+          return response_data
+        } else {
+          throw Error("Null data!!!");
+        }
+      }
+    );
+  } catch (e) {
+    refreshToken();
+    return get_json(path, getAuthorizationHeaders());
+  }
+
+}
 
 export const auth_post_json = (path, data={}) =>
-  post_json(path, data, getAuthorizationHeaders());
+{
+  try {
+    return post_json(path, data, getAuthorizationHeaders()).then(
+      response_data =>
+      {
+        if (response_data != null) {
+          return response_data;
+        } else {
+          throw Error("Null data!!!");
+        }
+      }
+    );
+  } catch (e) {
+    refreshToken();
+    return post_json(path, data, getAuthorizationHeaders());
+  }
+}
+
+function refreshToken() {
+  const storage = new Storage();
+  post_json(REFRESH_TOKEN_QUERY_PATH, {token: storage.get(JWT_KEY)}).then(
+    data => saveToken(data)
+  );
+}
 
 function getAuthorizationHeaders() {
   const storage = new Storage();
   return {'Authorization': `JWT ${storage.get(JWT_KEY)}`};
 }
+
+export const verifyEmail = (key) =>
+  post_json(VERIFY_EMAIL_QUERY_PATH, {key: key})

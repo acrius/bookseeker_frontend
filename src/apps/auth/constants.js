@@ -14,6 +14,11 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_REQUEST_FAILED = 'LOGOUT_REQUEST_FAILED';
 export const LOGOUT_REQUEST_SUCCESS = 'LOGOUT_REQUEST_SUCCESS';
 
+//Logout states
+export const CONFIRM_REQUEST = 'CONFIRM_REQUEST';
+export const CONFIRM_REQUEST_FAILED = 'CONFIRM_REQUEST_FAILED';
+export const CONFIRM_REQUEST_SUCCESS = 'CONFIRM_REQUEST_SUCCESS';
+
 //Queries paths
 export const REGISTRATION_QUERY_PATH = '/rest-auth/registration/';
 export const TOKEN_AUTH_PATH = '/api-token-auth/';
